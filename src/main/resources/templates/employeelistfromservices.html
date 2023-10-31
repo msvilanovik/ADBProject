@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee List</title>
+</head>
+<body>
+<h1>Employee List</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Employee ID</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Select</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employee : ${employees}">
+        <td th:text="${employee.userid}"></td>
+        <td th:text="${employee.e_name}"></td>
+        <td th:text="${employee.surname}"></td>
+        <td>
+            <form action="/booking-times" method="get">
+                <input type="hidden" name="bcId" th:value="${employee.bcid}" />
+                <input type="hidden" name="employeeId" th:value="${employee.userid}" />
+                <input type="hidden" name="serviceIds" th:value="${serviceIds}" />
+                <button type="submit">Select</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
